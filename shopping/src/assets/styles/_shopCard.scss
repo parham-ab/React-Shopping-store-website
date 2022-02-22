@@ -1,0 +1,66 @@
+.shopCard-container {
+  .empty-card,
+  .checkout-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    h3 {
+      color: #5c5c5c;
+      text-align: center;
+      font-size: 3rem;
+    }
+    a {
+      color: #fff;
+      background-color: #3e81be;
+      transition: all 0.3s;
+      padding: 8px;
+      margin-top: 50px;
+      border-radius: 5px;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      &:hover {
+        background-color: #376896;
+        transition: all 0.3s;
+      }
+    }
+  }
+  .btn-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+    button {
+      border-radius: 5px;
+      background-color: #3e81be;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 12px -2px,
+        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+      transition: all 0.3s;
+      color: #fff;
+      cursor: pointer;
+      padding: 8px;
+      &:hover {
+        background-color: #376896;
+        transition: all 0.3s;
+      }
+    }
+    .clear-btn {
+      background-color: transparent;
+      color: red;
+      box-shadow: none;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+.total-container {
+  display: flex;
+  flex-direction: column;
+  margin: 70px auto;
+  border: solid 1px #b9b9b9;
+  width: 300px;
+  padding: 10px;
+  border-radius: 3px;
+  line-height: 40px;
+}

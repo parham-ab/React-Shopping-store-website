@@ -1,0 +1,34 @@
+// CSS resets
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+  text-decoration: none;
+  outline: none;
+  border: none;
+}
+body {
+  font-family: tahoma;
+}
+.swal-text {
+  color: #000;
+  font-weight: bold;
+}
+// loader
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+// styles
+@import "navbar";
+@import "products";
+@import "store";
+@import "cards";
+@import "details";
+@import "shopCard";
