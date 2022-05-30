@@ -24,7 +24,10 @@ body {
   align-items: center;
   min-height: 100vh;
 }
-
+// swiper
+.swiper-pagination{
+  margin: -13px;
+}
 // styles
 @import "navbar";
 @import "products";

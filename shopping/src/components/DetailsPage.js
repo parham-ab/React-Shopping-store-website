@@ -5,7 +5,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import { Avatar, IconButton, Skeleton } from "@mui/material";
+import { Avatar, IconButton } from "@mui/material";
 // functions
 import { isSelected, quantityCount } from "../helper/functions";
 // icons
