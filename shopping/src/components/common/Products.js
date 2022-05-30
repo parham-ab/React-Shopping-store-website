@@ -59,9 +59,7 @@ const Products = ({ productData }) => {
                 </Link>
               </div>
 
-              <CardActions
-                sx={{ display: "flex", justifyContent: "space-evenly" }}
-              >
+              <CardActions>
                 {quantityCount(state, productData.id) > 1 && (
                   <IconButton
                     onClick={() =>
@@ -87,7 +85,12 @@ const Products = ({ productData }) => {
                 )}
                 {quantityCount(state, productData.id) > 0 && (
                   <Avatar
-                    sx={{ width: 30, height: 30, backgroundColor: "#608f57" }}
+                    sx={{
+                      width: 30,
+                      height: 30,
+                      backgroundColor: "#608f57",
+                      marginLeft: "7px",
+                    }}
                     alt="Remy Sharp"
                   >
                     {quantityCount(state, productData.id) > 0 && (

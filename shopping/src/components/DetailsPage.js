@@ -3,14 +3,20 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import CardActions from "@mui/material/CardActions";
+import Button from "@mui/material/Button";
+import { Avatar, IconButton, Skeleton } from "@mui/material";
 // functions
 import { isSelected, quantityCount } from "../helper/functions";
 // icons
 import { BsFillTrashFill } from "react-icons/bs";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 // context
 import { CardContext } from "../contexts/CardContextProvider";
 // components
 import Loading from "./Loading";
+import Banner from "./Banner";
 
 const DetailsPage = () => {
   const { state, dispatch } = useContext(CardContext);
@@ -81,51 +87,71 @@ const DetailsPage = () => {
                 <span className="product-info">
                   {currentProduct.rating.count}{" "}
                 </span>
-                of this product left!
+                items of this product left!
               </p>
             </div>
-            <div>
-              <div className="btn-container"></div>
 
+            <CardActions>
               {quantityCount(state, currentProduct.id) > 1 && (
-                <button
+                <IconButton
                   onClick={() =>
                     dispatch({ type: "DECREASE", payload: currentProduct })
                   }
+                  aria-label="RemoveCircleIcon"
+                  size="large"
                 >
-                  -
-                </button>
+                  <RemoveCircleIcon fontSize="inherit" />
+                </IconButton>
               )}
               {quantityCount(state, currentProduct.id) === 1 && (
-                <button
+                <IconButton
                   onClick={() =>
                     dispatch({ type: "REMOVE_ITEM", payload: currentProduct })
                   }
+                  color="error"
+                  aria-label="delete"
+                  size="large"
                 >
-                  <BsFillTrashFill />
-                </button>
+                  <BsFillTrashFill fontSize="inherit" />
+                </IconButton>
               )}
               {quantityCount(state, currentProduct.id) > 0 && (
-                <span>{quantityCount(state, currentProduct.id)}</span>
+                <Avatar
+                  sx={{
+                    width: 30,
+                    height: 30,
+                    backgroundColor: "#608f57",
+                    marginLeft: "7px",
+                  }}
+                  alt="Remy Sharp"
+                >
+                  {quantityCount(state, currentProduct.id) > 0 && (
+                    <span>{quantityCount(state, currentProduct.id)}</span>
+                  )}
+                </Avatar>
               )}
               {isSelected(state, currentProduct.id) ? (
-                <button
+                <IconButton
+                  aria-label="AddCircleIcon"
+                  size="large"
                   onClick={() =>
                     dispatch({ type: "INCREASE", payload: currentProduct })
                   }
                 >
-                  +
-                </button>
+                  <AddCircleIcon fontSize="inherit" />
+                </IconButton>
               ) : (
-                <button
+                <Button
+                  size="small"
+                  variant="contained"
                   onClick={() =>
                     dispatch({ type: "ADD_ITEM", payload: currentProduct })
                   }
                 >
-                  add to card
-                </button>
+                  Add to card
+                </Button>
               )}
-            </div>
+            </CardActions>
             <Link to="/products">Back to store</Link>
           </div>
         </div>
@@ -134,6 +160,7 @@ const DetailsPage = () => {
           <Loading />
         </div>
       )}
+      <Banner />
     </div>
   );
 };
