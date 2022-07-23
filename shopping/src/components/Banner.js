@@ -1,5 +1,4 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { ProductContext } from "../contexts/ProductContextProvider";
@@ -36,7 +35,6 @@ const Banner = () => {
         {data.map((items) => (
           <SwiperSlide key={items.id}>
             <Card sx={{ height: "250px" }}>
-              {/* <Link to={`/products/${items.id}`}> */}
               <CardMedia component="div">
                 {items.image ? (
                   <img
@@ -73,7 +71,6 @@ const Banner = () => {
                   {shorten(items.title)}
                 </Typography>
               </CardContent>
-              {/* </Link> */}
             </Card>
           </SwiperSlide>
         ))}

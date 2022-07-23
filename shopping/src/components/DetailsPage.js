@@ -5,13 +5,13 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
-import { Avatar, IconButton } from "@mui/material";
 // functions
 import { isSelected, quantityCount } from "../helper/functions";
 // icons
 import { BsFillTrashFill } from "react-icons/bs";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { Avatar, IconButton } from "@mui/material";
 // context
 import { CardContext } from "../contexts/CardContextProvider";
 // components
