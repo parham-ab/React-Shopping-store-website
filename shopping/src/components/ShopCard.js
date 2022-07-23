@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
-
+import Button from "@mui/material/Button";
 // Components
 import Card from "./Card";
 
@@ -26,15 +26,20 @@ const ShopCard = () => {
             </div>
 
             <div className="btn-container">
-              <button onClick={() => dispatch({ type: "CHECKOUT" })}>
+              <button
+                variant="contained"
+                onClick={() => dispatch({ type: "CHECKOUT" })}
+                className="checkout-button"
+              >
                 Check Out
               </button>
-              <button
+              <Button
+                variant="text"
                 onClick={() => dispatch({ type: "CLEAR" })}
-                className="clear-btn"
+                color="error"
               >
                 Clear
-              </button>
+              </Button>
             </div>
           </div>
         )}

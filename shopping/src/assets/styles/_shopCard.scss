@@ -30,26 +30,20 @@
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
-    button {
-      border-radius: 5px;
-      background-color: #3e81be;
-      box-shadow: rgba(50, 50, 93, 0.25) 0px 4px 12px -2px,
-        rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
-      transition: all 0.3s;
+    .checkout-button {
+      background-color: #108911;
       color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      transition: all 0.4s;
       cursor: pointer;
-      padding: 8px;
       &:hover {
-        background-color: #376896;
-        transition: all 0.3s;
+        background-color: #0d680e;
+        transition: all 0.4s;
       }
-    }
-    .clear-btn {
-      background-color: transparent;
-      color: red;
-      box-shadow: none;
-      &:hover {
-        background-color: transparent;
+      &:active {
+        background-color: #377537;
+        transition: all 0.4s;
       }
     }
   }

@@ -1,7 +1,10 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 // icons
 import { BsFillTrashFill } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import { IconButton } from "@mui/material";
 // context
 import { CardContext } from "../contexts/CardContextProvider";
 
@@ -26,28 +29,35 @@ const Card = (props) => {
         {/* buttons */}
         <div>
           {quantity > 1 ? (
-            <button
+            <IconButton
               onClick={() =>
                 dispatch({ type: "DECREASE", payload: props.data })
               }
+              aria-label="RemoveCircleIcon"
+              size="small"
             >
-              -
-            </button>
+              <RemoveCircleIcon fontSize="inherit" />
+            </IconButton>
           ) : (
-            <button
+            <IconButton
               onClick={() =>
                 dispatch({ type: "REMOVE_ITEM", payload: props.data })
               }
+              aria-label="RemoveCircleIcon"
+              size="small"
             >
-              <BsFillTrashFill />
-            </button>
+              <BsFillTrashFill fontSize="inherit" />
+            </IconButton>
           )}
+
           <span>{quantity}</span>
-          <button
+          <IconButton
+            aria-label="AddCircleIcon"
+            size="small"
             onClick={() => dispatch({ type: "INCREASE", payload: props.data })}
           >
-            +
-          </button>
+            <AddCircleIcon fontSize="inherit" />
+          </IconButton>
         </div>
       </div>
     </div>
