@@ -1,3 +1,5 @@
+// fonts
+@import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:ital,wght@0,300;1,300&display=swap");
 // CSS resets
 *,
 *::after,
@@ -28,7 +30,7 @@
   background-color: rgb(207, 207, 207);
 }
 body {
-  font-family: tahoma;
+  font-family: Quicksand;
 }
 .swal-text {
   color: #000;
