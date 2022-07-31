@@ -1,33 +1,41 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Box, IconButton, Typography } from "@mui/material";
 // icons
 import { BsFillTrashFill } from "react-icons/bs";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import { IconButton } from "@mui/material";
 // context
 import { CardContext } from "../contexts/CardContextProvider";
 
 const Card = (props) => {
   const { dispatch } = useContext(CardContext);
   const { image, title, price, quantity, id } = props.data;
+
   return (
-    <div className="cards-container">
-      <div className="container">
+    <Box component="div" className="cards-container">
+      <Box component="div" className="container">
         <img
           style={{ width: "100px" }}
           src={image}
           alt="product"
           className="productImage"
         />
-        <div className="data">
+        <Box component="div" className="data">
           <Link to={`/products/${id}`}>
-            <h5>{title}</h5>
+            <Typography variant="h5" color="initial">
+              {title}
+            </Typography>
           </Link>
-          <p>${price}</p>
-        </div>
+          <Typography variant="body1" color="initial">
+            {title}
+          </Typography>
+          <Typography variant="body1" color="initial">
+            ${price}
+          </Typography>
+        </Box>
         {/* buttons */}
-        <div>
+        <Box component="div" display="flex" alignItems="center">
           {quantity > 1 ? (
             <IconButton
               onClick={() =>
@@ -49,8 +57,9 @@ const Card = (props) => {
               <BsFillTrashFill fontSize="inherit" />
             </IconButton>
           )}
-
-          <span>{quantity}</span>
+          <Typography variant="body1" color="text.secondary">
+            {quantity}
+          </Typography>
           <IconButton
             aria-label="AddCircleIcon"
             size="small"
@@ -58,9 +67,9 @@ const Card = (props) => {
           >
             <AddCircleIcon fontSize="inherit" />
           </IconButton>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Box>
   );
 };
 

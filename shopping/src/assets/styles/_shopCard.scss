@@ -30,22 +30,6 @@
     display: flex;
     justify-content: space-around;
     margin-top: 10px;
-    .checkout-button {
-      background-color: #108911;
-      color: #fff;
-      padding: 10px;
-      border-radius: 8px;
-      transition: all 0.4s;
-      cursor: pointer;
-      &:hover {
-        background-color: #0d680e;
-        transition: all 0.4s;
-      }
-      &:active {
-        background-color: #377537;
-        transition: all 0.4s;
-      }
-    }
   }
 }
 .total-container {

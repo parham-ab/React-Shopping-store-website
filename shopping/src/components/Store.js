@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Box } from "@mui/material";
 // context
 import { ProductContext } from "../contexts/ProductContextProvider";
 // components
@@ -8,17 +9,17 @@ const Store = () => {
   const products = useContext(ProductContext);
 
   return (
-    <div className="store-container">
+    <Box component="div" className="store-container">
       {products.length ? (
         products.map((product) => (
           <Products key={product.id} productData={product} />
         ))
       ) : (
-        <div className="loading-container">
+        <Box component="div" className="loading-container">
           <Loading />
-        </div>
+        </Box>
       )}
-    </div>
+    </Box>
   );
 };
 

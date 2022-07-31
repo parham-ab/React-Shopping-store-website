@@ -20,12 +20,12 @@ import { isSelected, quantityCount, shorten } from "../../helper/functions";
 const Products = ({ productData }) => {
   const { state, dispatch } = useContext(CardContext);
   return (
-    <div className="product-container">
-      <div className="container">
+    <Box component="div" className="product-container">
+      <Box component="div" className="container">
         <Box sx={{ width: "290px", margin: "40px 0" }}>
           {productData ? (
             <Card>
-              <div>
+              <Box component="div">
                 <Link to={`/products/${productData.id}`}>
                   <CardMedia component="div">
                     {productData.image ? (
@@ -57,7 +57,7 @@ const Products = ({ productData }) => {
                     </Typography>
                   </CardContent>
                 </Link>
-              </div>
+              </Box>
 
               <CardActions>
                 {quantityCount(state, productData.id) > 1 && (
@@ -130,8 +130,8 @@ const Products = ({ productData }) => {
             />
           )}
         </Box>
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 

@@ -11,7 +11,7 @@ import { isSelected, quantityCount } from "../helper/functions";
 import { BsFillTrashFill } from "react-icons/bs";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import { Avatar, IconButton } from "@mui/material";
+import { Avatar, IconButton, Typography } from "@mui/material";
 // context
 import { CardContext } from "../contexts/CardContextProvider";
 // components
@@ -38,58 +38,111 @@ const DetailsPage = () => {
   const id = params.id;
 
   return (
-    <div className="details-container">
+    <Box component="div" className="details-container">
       {currentProduct.id ? (
-        <div className="container">
-          <div className="img-container">
+        <Box component="div" className="container">
+          <Box component="div" className="img-container">
             <img src={currentProduct.image} alt={`product/${id}`} />
-          </div>
-          <div className="information">
-            <div className="text-container">
-              <p>
-                <span className="product-info"> {currentProduct.title}</span>
-              </p>
-              <p>
+          </Box>
+          <Box component="div" className="information">
+            <Box component="div" className="text-container">
+              <Typography
+                variant="body1"
+                color="initial"
+                sx={{ lineHeight: 3 }}
+              >
+                {currentProduct.title}
+              </Typography>
+
+              <Typography
+                component="p"
+                variant="body1"
+                color="primary"
+                fontWeight={700}
+                display="flex"
+              >
                 Info:
-                <span className="product-info">
-                  {" "}
-                  {currentProduct.description}
-                </span>
-              </p>
-              <p>
-                Category:
-                <span className="product-info"> {currentProduct.category}</span>
-              </p>
-              <p>
-                Price:
-                <span className="product-info"> ${currentProduct.price}</span>
-              </p>
-              <div>
-                Rate:
-                <span className="product-info">
-                  {" "}
-                  {currentProduct.rating.rate}
-                </span>
-                <Box
-                  sx={{
-                    "& > legend": { mt: 2 },
-                  }}
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  fontWeight={400}
                 >
+                  {currentProduct.description}
+                </Typography>
+              </Typography>
+
+              <Typography
+                variant="body1"
+                color="primary"
+                fontWeight={700}
+                sx={{ lineHeight: 3 }}
+                display="flex"
+                alignItems="center"
+              >
+                Category:
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  fontWeight={400}
+                >
+                  {currentProduct.category}
+                </Typography>
+              </Typography>
+
+              <Typography
+                variant="body1"
+                color="primary"
+                fontWeight={700}
+                sx={{ lineHeight: 3 }}
+                display="flex"
+                alignItems="center"
+              >
+                Price:
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  fontWeight={400}
+                >
+                  ${currentProduct.price}
+                </Typography>
+              </Typography>
+
+              <Box component="div">
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  fontWeight={700}
+                  display="flex"
+                  alignItems="center"
+                  sx={{ lineHeight: 3 }}
+                >
+                  Rate:
+                  <Typography
+                    variant="body1"
+                    color="text.secondary"
+                    fontWeight={400}
+                  >
+                    {currentProduct.rating.rate}
+                  </Typography>
                   <Rating
+                    sx={{ marginLeft: 1 }}
                     name="half-rating-read"
                     defaultValue={currentProduct.rating.rate}
                     precision={0.1}
                     readOnly
                   />
-                </Box>
-              </div>
-              <p>
-                <span className="product-info">
-                  {currentProduct.rating.count}{" "}
-                </span>
-                items of this product left!
-              </p>
-            </div>
+                </Typography>
+              </Box>
+
+              <Typography
+                variant="body2"
+                color="text.secondary"
+                fontWeight={400}
+                sx={{ lineHeight: 1 }}
+              >
+                {currentProduct.rating.count} items of this product left!
+              </Typography>
+            </Box>
 
             <CardActions>
               {quantityCount(state, currentProduct.id) > 1 && (
@@ -153,15 +206,15 @@ const DetailsPage = () => {
               )}
             </CardActions>
             <Link to="/products">Back to store</Link>
-          </div>
-        </div>
+          </Box>
+        </Box>
       ) : (
         <div className="loading-container">
           <Loading />
         </div>
       )}
       <Banner />
-    </div>
+    </Box>
   );
 };
 

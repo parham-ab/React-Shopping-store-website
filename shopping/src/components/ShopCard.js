@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import Button from "@mui/material/Button";
+import { Box, Typography } from "@mui/material";
 // Components
 import Card from "./Card";
 
@@ -12,27 +13,53 @@ const ShopCard = () => {
   const { state, dispatch } = useContext(CardContext);
 
   return (
-    <div className="shopCard-container">
-      <div className="checkout-container">
+    <Box component="div" className="shopCard-container">
+      <Box component="div" className="checkout-container">
         {state.itemsCounter > 0 && (
-          <div className="total-container">
-            <div>
-              <p>
-                <span>Total Items:</span> {state.itemsCounter}
-              </p>
-              <p>
-                <span>Total Payments:</span> ${state.total}
-              </p>
-            </div>
+          <Box component="div" className="total-container">
+            <Box component="div">
+              <Typography
+                variant="body1"
+                color="primary"
+                fontWeight={700}
+                display="flex"
+                alignItems="center"
+              >
+                Total Items:
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  fontWeight={400}
+                >
+                  {state.itemsCounter}
+                </Typography>
+              </Typography>
+              <Typography
+                variant="body1"
+                color="primary"
+                fontWeight={700}
+                display="flex"
+                alignItems="center"
+              >
+                Total Payments:
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  fontWeight={400}
+                >
+                  ${state.total}
+                </Typography>
+              </Typography>
+            </Box>
 
-            <div className="btn-container">
-              <button
+            <Box component="div" className="btn-container">
+              <Button
                 variant="contained"
+                color="success"
                 onClick={() => dispatch({ type: "CHECKOUT" })}
-                className="checkout-button"
               >
                 Check Out
-              </button>
+              </Button>
               <Button
                 variant="text"
                 onClick={() => dispatch({ type: "CLEAR" })}
@@ -40,10 +67,10 @@ const ShopCard = () => {
               >
                 Clear
               </Button>
-            </div>
-          </div>
+            </Box>
+          </Box>
         )}
-      </div>
+      </Box>
 
       {state.checkout &&
         (swal({
@@ -51,24 +78,28 @@ const ShopCard = () => {
           icon: "success",
         }),
         (
-          <div className="checkout-card">
-            <h3>Checked Out Successfully!</h3>
+          <Box component="div" className="checkout-card">
+            <Typography variant="h3" color="primary" fontWeight={700}>
+              Checked Out Successfully!
+            </Typography>
             <Link to="/products">Back to shop</Link>
-          </div>
+          </Box>
         ))}
 
       {!state.checkout && state.itemsCounter === 0 && (
-        <div className="empty-card">
-          <h3>Your card is empty!</h3>
+        <Box component="div" className="empty-card">
+          <Typography variant="h3" color="primary">
+            Your card is empty!
+          </Typography>
           <Link to="/products">Back to Shop</Link>
-        </div>
+        </Box>
       )}
-      <div>
+      <Box component="div">
         {state.selectedItems.map((item) => (
           <Card key={item.id} data={item} />
         ))}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 };
 
