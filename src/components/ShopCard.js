@@ -18,14 +18,17 @@ const ShopCard = () => {
         {state.itemsCounter > 0 && (
           <Box component="div" className="total-container">
             <Box component="div">
-              <Typography
-                variant="body1"
-                color="primary"
-                fontWeight={700}
-                display="flex"
-                alignItems="center"
-              >
-                Total Items:
+              <Box component="div" display="flex">
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  fontWeight={700}
+                  display="flex"
+                  alignItems="center"
+                  mr={1}
+                >
+                  Total Items:
+                </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -33,15 +36,19 @@ const ShopCard = () => {
                 >
                   {state.itemsCounter}
                 </Typography>
-              </Typography>
-              <Typography
-                variant="body1"
-                color="primary"
-                fontWeight={700}
-                display="flex"
-                alignItems="center"
-              >
-                Total Payments:
+              </Box>
+
+              <Box component="div" display="flex">
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  fontWeight={700}
+                  display="flex"
+                  alignItems="center"
+                  mr={1}
+                >
+                  Total Payments:
+                </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -49,7 +56,7 @@ const ShopCard = () => {
                 >
                   ${state.total}
                 </Typography>
-              </Typography>
+              </Box>
             </Box>
 
             <Box component="div" className="btn-container">
