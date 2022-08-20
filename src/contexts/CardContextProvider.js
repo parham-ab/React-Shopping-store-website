@@ -100,6 +100,15 @@ const cardReducer = (state, action) => {
         ...sumItems(state.selectedItems),
       };
     case "CHECKOUT":
+      localStorage.setItem(
+        "shopStore-productslist",
+        JSON.stringify({
+          selectedItems: [],
+          itemsCounter: 0,
+          total: 0,
+          checkout: true,
+        })
+      );
       return {
         selectedItems: [],
         itemsCounter: 0,
@@ -107,6 +116,15 @@ const cardReducer = (state, action) => {
         checkout: true,
       };
     case "CLEAR":
+      localStorage.setItem(
+        "shopStore-productslist",
+        JSON.stringify({
+          selectedItems: [],
+          itemsCounter: 0,
+          total: 0,
+          checkout: false,
+        })
+      );
       return {
         selectedItems: [],
         itemsCounter: 0,
