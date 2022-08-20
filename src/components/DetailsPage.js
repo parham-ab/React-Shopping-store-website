@@ -49,14 +49,17 @@ const DetailsPage = () => {
                 {currentProduct.title}
               </Typography>
 
-              <Typography
-                component="p"
-                variant="body1"
-                color="primary"
-                fontWeight={700}
-                display="flex"
-              >
-                Info:
+              <Box component="div" display="flex">
+                <Typography
+                  component="p"
+                  variant="body1"
+                  color="primary"
+                  fontWeight={700}
+                  display="flex"
+                  mr={1}
+                >
+                  Info:
+                </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -64,17 +67,20 @@ const DetailsPage = () => {
                 >
                   {currentProduct.description}
                 </Typography>
-              </Typography>
+              </Box>
 
-              <Typography
-                variant="body1"
-                color="primary"
-                fontWeight={700}
-                sx={{ lineHeight: 3 }}
-                display="flex"
-                alignItems="center"
-              >
-                Category:
+              <Box component="div" display="flex" alignItems="center">
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  fontWeight={700}
+                  sx={{ lineHeight: 3 }}
+                  display="flex"
+                  alignItems="center"
+                  mr={1}
+                >
+                  Category:
+                </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -82,17 +88,20 @@ const DetailsPage = () => {
                 >
                   {currentProduct.category}
                 </Typography>
-              </Typography>
+              </Box>
 
-              <Typography
-                variant="body1"
-                color="primary"
-                fontWeight={700}
-                sx={{ lineHeight: 3 }}
-                display="flex"
-                alignItems="center"
-              >
-                Price:
+              <Box component="div" display="flex" alignItems="center">
+                <Typography
+                  variant="body1"
+                  color="primary"
+                  fontWeight={700}
+                  sx={{ lineHeight: 3 }}
+                  display="flex"
+                  alignItems="center"
+                  mr={1}
+                >
+                  Price:
+                </Typography>
                 <Typography
                   variant="body1"
                   color="text.secondary"
@@ -100,9 +109,9 @@ const DetailsPage = () => {
                 >
                   ${currentProduct.price}
                 </Typography>
-              </Typography>
+              </Box>
 
-              <Box component="div">
+              <Box component="div" display="flex" alignItems="center">
                 <Typography
                   variant="body1"
                   color="primary"
@@ -110,23 +119,24 @@ const DetailsPage = () => {
                   display="flex"
                   alignItems="center"
                   sx={{ lineHeight: 3 }}
+                  mr={1}
                 >
                   Rate:
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    fontWeight={400}
-                  >
-                    {currentProduct.rating.rate}
-                  </Typography>
-                  <Rating
-                    sx={{ marginLeft: 1 }}
-                    name="half-rating-read"
-                    defaultValue={currentProduct.rating.rate}
-                    precision={0.1}
-                    readOnly
-                  />
                 </Typography>
+                <Typography
+                  variant="body1"
+                  color="text.secondary"
+                  fontWeight={400}
+                >
+                  {currentProduct.rating.rate}
+                </Typography>
+                <Rating
+                  sx={{ marginLeft: 1 }}
+                  name="half-rating-read"
+                  defaultValue={currentProduct.rating.rate}
+                  precision={0.1}
+                  readOnly
+                />
               </Box>
 
               <Typography
