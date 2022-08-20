@@ -15,6 +15,7 @@ const sumItems = (items) => {
   const total = items
     .reduce((total, product) => total + product.price * product.quantity, 0)
     .toFixed(2);
+
   return { itemsCounter, total };
 };
 // Reducer
@@ -140,14 +141,25 @@ export const CardContext = React.createContext();
 
 const CardContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cardReducer, initialState);
-  useEffect(() => {
+  // save to localeStorage function
+  const saveToLocale = () => {
     const savedItems = localStorage.getItem("shopStore-productslist");
     const parsedItems = JSON.parse(savedItems);
     if (savedItems != null) {
       initialState.selectedItems = parsedItems.selectedItems;
+      initialState.itemsCounter = parsedItems.itemsCounter;
     }
+  };
+  useEffect(() => {
+    saveToLocale();
   }, []);
 
+  const savedItems = localStorage.getItem("shopStore-productslist");
+  const parsedItems = JSON.parse(savedItems);
+  if (savedItems != null) {
+    initialState.selectedItems = parsedItems.selectedItems;
+    initialState.itemsCounter = parsedItems.itemsCounter;
+  }
   return (
     <CardContext.Provider value={{ state, dispatch }}>
       {children}
