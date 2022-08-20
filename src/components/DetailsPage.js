@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
 import CardActions from "@mui/material/CardActions";
 import Button from "@mui/material/Button";
 // functions
@@ -17,19 +16,15 @@ import { CardContext } from "../contexts/CardContextProvider";
 // components
 import Loading from "./Loading";
 import Banner from "./Banner";
+import { GetSingleProducts } from "../services/getSingleProducts";
 
 const DetailsPage = () => {
   const { state, dispatch } = useContext(CardContext);
   const [currentProduct, setCurrentProduct] = useState([]);
 
-  const GetCurrentProduct = async () => {
-    const BASE_URL = "https://fakestoreapi.com/products";
-    const result = await axios.get(`${BASE_URL}/${id}`);
-    return result.data;
-  };
   useEffect(() => {
     const fetchAPI = async () => {
-      setCurrentProduct(await GetCurrentProduct());
+      setCurrentProduct(await GetSingleProducts(id));
     };
     fetchAPI();
   }, []);
