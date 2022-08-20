@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useEffect, useReducer } from "react";
 
 const initialState = {
   selectedItems: [],
@@ -28,6 +28,15 @@ const cardReducer = (state, action) => {
           quantity: 1,
         });
       }
+      localStorage.setItem(
+        "shopStore-productslist",
+        JSON.stringify({
+          ...state,
+          selectedItems: [...state.selectedItems],
+          ...sumItems(state.selectedItems),
+        })
+      );
+
       return {
         ...state,
         selectedItems: [...state.selectedItems],
@@ -38,6 +47,15 @@ const cardReducer = (state, action) => {
     case "REMOVE_ITEM":
       const newSelectedItems = state.selectedItems.filter(
         (item) => item.id !== action.payload.id
+      );
+      localStorage.setItem(
+        "shopStore-productslist",
+        JSON.stringify({
+          ...state,
+          selectedItems: [...newSelectedItems],
+          ...sumItems(newSelectedItems),
+          checkout: false,
+        })
       );
       return {
         ...state,
@@ -51,16 +69,32 @@ const cardReducer = (state, action) => {
         (item) => item.id === action.payload.id
       );
       state.selectedItems[indexI].quantity++;
+      localStorage.setItem(
+        "shopStore-productslist",
+        JSON.stringify({
+          ...state,
+          ...sumItems(state.selectedItems),
+        })
+      );
       return {
         ...state,
         ...sumItems(state.selectedItems),
       };
+
     // remove products (When user selects more than one product and wants to remove a number of them)
     case "DECREASE":
       const indexD = state.selectedItems.findIndex(
         (item) => item.id === action.payload.id
       );
       state.selectedItems[indexD].quantity--;
+
+      localStorage.setItem(
+        "shopStore-productslist",
+        JSON.stringify({
+          ...state,
+          ...sumItems(state.selectedItems),
+        })
+      );
       return {
         ...state,
         ...sumItems(state.selectedItems),
@@ -88,6 +122,13 @@ export const CardContext = React.createContext();
 
 const CardContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(cardReducer, initialState);
+  useEffect(() => {
+    const savedItems = localStorage.getItem("shopStore-productslist");
+    const parsedItems = JSON.parse(savedItems);
+    if (savedItems != null) {
+      initialState.selectedItems = parsedItems.selectedItems;
+    }
+  }, []);
 
   return (
     <CardContext.Provider value={{ state, dispatch }}>
