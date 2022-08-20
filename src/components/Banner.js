@@ -6,13 +6,7 @@ import { shorten } from "../helper/functions";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
-import {
-  Card,
-  CardContent,
-  CardMedia,
-  Skeleton,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, CardMedia, Typography } from "@mui/material";
 
 const Banner = () => {
   const data = useContext(ProductContext);
@@ -36,25 +30,16 @@ const Banner = () => {
           <SwiperSlide key={items.id}>
             <Card sx={{ height: "250px" }}>
               <CardMedia component="div">
-                {items.image ? (
-                  <img
-                    src={items.image}
-                    alt={items.id}
-                    loading="lazy"
-                    style={{
-                      width: "100px",
-                      display: "flex",
-                      margin: "0 auto",
-                    }}
-                  />
-                ) : (
-                  <Skeleton
-                    variant="rectangular"
-                    width={"250px"}
-                    height={"250px"}
-                    sx={{ bgcolor: "grey.900" }}
-                  />
-                )}
+                <img
+                  src={items.image}
+                  alt={items.id}
+                  loading="lazy"
+                  style={{
+                    width: "100px",
+                    display: "flex",
+                    margin: "0 auto",
+                  }}
+                />
               </CardMedia>
               <CardContent
                 style={{

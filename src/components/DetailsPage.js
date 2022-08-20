@@ -208,7 +208,9 @@ const DetailsPage = () => {
           <Loading />
         </div>
       )}
-      <Banner />
+      <Box component="div">
+        <Banner />
+      </Box>
     </Box>
   );
 };
