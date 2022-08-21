@@ -7,9 +7,9 @@ import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/system";
-import { Avatar, IconButton, Skeleton } from "@mui/material";
+import { Chip, IconButton, Skeleton } from "@mui/material";
 // icons
-import { BsFillTrashFill } from "react-icons/bs";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 // context
@@ -80,23 +80,21 @@ const Products = ({ productData }) => {
                     aria-label="delete"
                     size="medium"
                   >
-                    <BsFillTrashFill fontSize="inherit" />
+                    <DeleteIcon fontSize="inherit" />
                   </IconButton>
                 )}
                 {quantityCount(state, productData.id) > 0 && (
-                  <Avatar
-                    sx={{
-                      width: 30,
-                      height: 30,
-                      backgroundColor: "#608f57",
-                      marginLeft: "7px",
-                    }}
-                    alt="Remy Sharp"
-                  >
-                    {quantityCount(state, productData.id) > 0 && (
-                      <span>{quantityCount(state, productData.id)}</span>
-                    )}
-                  </Avatar>
+                  <Chip
+                    size="small"
+                    variant="outlined"
+                    color="info"
+                    label={
+                      quantityCount(state, productData.id) > 0 && (
+                        <span>{quantityCount(state, productData.id)}</span>
+                      )
+                    }
+                    sx={{ ml: 1 }}
+                  />
                 )}
                 {isSelected(state, productData.id) ? (
                   <IconButton

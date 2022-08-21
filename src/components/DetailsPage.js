@@ -211,7 +211,11 @@ const DetailsPage = () => {
             </CardActions>
             <Link
               to="/products"
-              style={{ display: "flex", width: "fit-content" }}
+              style={{
+                display: "flex",
+                width: "fit-content",
+                marginTop: "15px",
+              }}
             >
               <ArrowBackIosIcon />
               <Typography>Back to store</Typography>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Box, IconButton, Typography } from "@mui/material";
 // icons
-import { BsFillTrashFill } from "react-icons/bs";
+import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
 // context
@@ -53,8 +53,9 @@ const Card = (props) => {
               }
               aria-label="RemoveCircleIcon"
               size="small"
+              color='error'
             >
-              <BsFillTrashFill fontSize="inherit" />
+              <DeleteIcon fontSize="inherit" />
             </IconButton>
           )}
           <Typography variant="body1" color="text.secondary">
