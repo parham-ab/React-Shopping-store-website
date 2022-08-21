@@ -7,10 +7,11 @@ import Button from "@mui/material/Button";
 // functions
 import { isSelected, quantityCount } from "../helper/functions";
 // icons
-import { BsFillTrashFill } from "react-icons/bs";
+import DeleteIcon from "@mui/icons-material/Delete";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import { Avatar, IconButton, Typography } from "@mui/material";
+import { Avatar, Chip, IconButton, Typography } from "@mui/material";
 // context
 import { CardContext } from "../contexts/CardContextProvider";
 // components
@@ -156,7 +157,7 @@ const DetailsPage = () => {
                     dispatch({ type: "DECREASE", payload: currentProduct })
                   }
                   aria-label="RemoveCircleIcon"
-                  size="large"
+                  size="medium"
                 >
                   <RemoveCircleIcon fontSize="inherit" />
                 </IconButton>
@@ -168,30 +169,28 @@ const DetailsPage = () => {
                   }
                   color="error"
                   aria-label="delete"
-                  size="large"
+                  size="medium"
                 >
-                  <BsFillTrashFill fontSize="inherit" />
+                  <DeleteIcon fontSize="inherit" />
                 </IconButton>
               )}
               {quantityCount(state, currentProduct.id) > 0 && (
-                <Avatar
-                  sx={{
-                    width: 30,
-                    height: 30,
-                    backgroundColor: "#608f57",
-                    marginLeft: "7px",
-                  }}
-                  alt="Remy Sharp"
-                >
-                  {quantityCount(state, currentProduct.id) > 0 && (
-                    <span>{quantityCount(state, currentProduct.id)}</span>
-                  )}
-                </Avatar>
+                <Chip
+                  size="small"
+                  variant="outlined"
+                  color="info"
+                  sx={{ ml: 1 }}
+                  label={
+                    quantityCount(state, currentProduct.id) > 0 && (
+                      <span>{quantityCount(state, currentProduct.id)}</span>
+                    )
+                  }
+                />
               )}
               {isSelected(state, currentProduct.id) ? (
                 <IconButton
                   aria-label="AddCircleIcon"
-                  size="large"
+                  size="medium"
                   onClick={() =>
                     dispatch({ type: "INCREASE", payload: currentProduct })
                   }
@@ -210,7 +209,13 @@ const DetailsPage = () => {
                 </Button>
               )}
             </CardActions>
-            <Link to="/products">Back to store</Link>
+            <Link
+              to="/products"
+              style={{ display: "flex", width: "fit-content" }}
+            >
+              <ArrowBackIosIcon />
+              <Typography>Back to store</Typography>
+            </Link>
           </Box>
         </Box>
       ) : (
@@ -218,7 +223,7 @@ const DetailsPage = () => {
           <Loading />
         </div>
       )}
-        <Banner />
+      <Banner />
     </Box>
   );
 };
