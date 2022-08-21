@@ -1,24 +1,41 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 // icons
-import { AiOutlineShoppingCart } from "react-icons/ai";
+import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 // context
 import { CardContext } from "../../contexts/CardContextProvider";
+import { Typography, Toolbar, AppBar, Badge, IconButton } from "@mui/material";
 
 const Navbar = () => {
   const { state } = useContext(CardContext);
   return (
-    <div className="nav-container">
-      <div className="store-tab">
-        <Link to="/products">Store</Link>
-      </div>
-      <div className="shop-logo">
-        <Link to="/cards">
-          <AiOutlineShoppingCart />
-          <span>{state.itemsCounter}</span>
+    <AppBar
+      position="static"
+      sx={{
+        backgroundColor: "#b7b7b7",
+      }}
+    >
+      <Toolbar
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          boxShadow: "rgb(131 131 131 / 20%) 0px 20px 25px",
+        }}
+      >
+        <Link to="/products">
+          <Typography variant="h6" component="div" color="text.secondary">
+            Store
+          </Typography>
         </Link>
-      </div>
-    </div>
+        <Link to="/cards">
+          <IconButton>
+            <Badge badgeContent={state.itemsCounter} color="info">
+              <ShoppingCartIcon color="action" sx={{ fontSize: "30px" }} />
+            </Badge>
+          </IconButton>
+        </Link>
+      </Toolbar>
+    </AppBar>
   );
 };
 

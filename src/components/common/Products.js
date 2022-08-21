@@ -66,7 +66,7 @@ const Products = ({ productData }) => {
                       dispatch({ type: "DECREASE", payload: productData })
                     }
                     aria-label="RemoveCircleIcon"
-                    size="large"
+                    size="medium"
                   >
                     <RemoveCircleIcon fontSize="inherit" />
                   </IconButton>
@@ -78,7 +78,7 @@ const Products = ({ productData }) => {
                     }
                     color="error"
                     aria-label="delete"
-                    size="large"
+                    size="medium"
                   >
                     <BsFillTrashFill fontSize="inherit" />
                   </IconButton>
@@ -101,7 +101,7 @@ const Products = ({ productData }) => {
                 {isSelected(state, productData.id) ? (
                   <IconButton
                     aria-label="AddCircleIcon"
-                    size="large"
+                    size="medium"
                     onClick={() =>
                       dispatch({ type: "INCREASE", payload: productData })
                     }
