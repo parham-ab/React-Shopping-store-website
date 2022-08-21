@@ -1,55 +1,11 @@
-// fonts
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&family=Rubik:ital,wght@0,300;1,300&display=swap");
-// CSS resets
-*,
-*::after,
-*::before {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  user-select: none;
-  text-decoration: none;
-  outline: none;
-  border: none;
-}
-// scroll bar
-::-webkit-scrollbar {
-  width: 7px;
-}
-::-webkit-scrollbar-track {
-  background-color: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgb(158, 158, 158);
-  border-radius: 5px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background-color: rgb(187, 187, 187);
-}
-::-webkit-scrollbar-thumb:active {
-  background-color: rgb(207, 207, 207);
-}
-body {
-  font-family: Quicksand;
-}
-.swal-text {
-  color: #000;
-  font-weight: bold;
-}
-// loader
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-}
-// swiper
-.swiper-pagination {
-  margin: -13px;
-}
-// styles
-@import "products";
-@import "store";
-@import "cards";
-@import "details";
-@import "shopCard";
+@import "global/reset";
+@import "global/fonts";
+@import "global/scrollbar";
+@import "global/swiper";
+@import "global/swal";
+@import "global/loader";
+@import "components/products";
+@import "components/store";
+@import "components/cards";
+@import "components/details";
+@import "components/shopCard";
