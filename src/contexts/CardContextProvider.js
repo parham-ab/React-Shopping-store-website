@@ -148,6 +148,8 @@ const CardContextProvider = ({ children }) => {
     if (savedItems != null) {
       initialState.selectedItems = parsedItems.selectedItems;
       initialState.itemsCounter = parsedItems.itemsCounter;
+      initialState.total = parsedItems.total;
+      initialState.checkOut = parsedItems.checkOut;
     }
   };
   useEffect(() => {
@@ -159,6 +161,8 @@ const CardContextProvider = ({ children }) => {
   if (savedItems != null) {
     initialState.selectedItems = parsedItems.selectedItems;
     initialState.itemsCounter = parsedItems.itemsCounter;
+    initialState.total = parsedItems.total;
+    initialState.checkOut = parsedItems.checkOut;
   }
   return (
     <CardContext.Provider value={{ state, dispatch }}>
