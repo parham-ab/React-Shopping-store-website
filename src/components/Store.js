@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box } from "@mui/material";
+import { Container, Grid } from "@mui/material";
 // context
 import { ProductContext } from "../contexts/ProductContextProvider";
 // components
@@ -9,17 +9,32 @@ const Store = () => {
   const products = useContext(ProductContext);
 
   return (
-    <Box component="div" className="store-container">
-      {products.length ? (
-        products.map((product) => (
-          <Products key={product.id} productData={product} />
-        ))
-      ) : (
-        <Box component="div" className="loading-container">
-          <Loading />
-        </Box>
-      )}
-    </Box>
+    <Container>
+      <Grid container>
+        {products.length ? (
+          products.map((product) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              lg={3}
+              p={2}
+              mt={8}
+              key={product.id}
+            >
+              <Products productData={product} />
+            </Grid>
+          ))
+        ) : (
+          // <Box component="div" className="loading-container">
+          <Grid item xs={12}>
+            <Loading />
+          </Grid>
+          // </Box>
+        )}
+      </Grid>
+    </Container>
   );
 };
 
