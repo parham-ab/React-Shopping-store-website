@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Container, Grid } from "@mui/material";
 // context
 import { ProductContext } from "../contexts/ProductContextProvider";

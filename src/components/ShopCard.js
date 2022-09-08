@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import swal from "sweetalert";
 import Button from "@mui/material/Button";
@@ -71,6 +71,7 @@ const ShopCard = () => {
                 variant="text"
                 onClick={() => dispatch({ type: "CLEAR" })}
                 color="error"
+                sx={{ fontWeight: "bold" }}
               >
                 Clear
               </Button>
