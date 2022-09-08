@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Typography, Container, Grid } from "@mui/material";
 // icons
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -13,24 +13,38 @@ const Card = (props) => {
   const { image, title, price, quantity, id } = props.data;
 
   return (
-    <Box component="div" className="cards-container">
-      <Box component="div" className="container">
+    <Container maxWidth="lg">
+      <Grid
+        container
+        alignItems="center"
+        justifyContent="space-between"
+        sx={{
+          border: "solid 1px #dfdfdf",
+          borderRadius: "10px",
+          padding: "20px",
+          flexDirection: {
+            xs: "column",
+            md: "row",
+          },
+        }}
+        my={5}
+      >
         <img
-          style={{ width: "100px" }}
+          style={{ width: "80px" }}
           src={image}
           alt="product"
           className="productImage"
         />
         <Box component="div" className="data">
           <Link to={`/products/${id}`}>
-            <Typography variant="h5" color="initial">
+            <Typography variant="h6" fontWeight="bold" color="initial">
               {title}
             </Typography>
           </Link>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body2" sx={{ color: "#590087" }}>
             {title}
           </Typography>
-          <Typography variant="body1" color="initial">
+          <Typography variant="body2" color="text.secondary">
             ${price}
           </Typography>
         </Box>
@@ -53,12 +67,12 @@ const Card = (props) => {
               }
               aria-label="RemoveCircleIcon"
               size="small"
-              color='error'
+              color="error"
             >
               <DeleteIcon fontSize="inherit" />
             </IconButton>
           )}
-          <Typography variant="body1" color="text.secondary">
+          <Typography variant="body1" color="text.secondary" px={0.6}>
             {quantity}
           </Typography>
           <IconButton
@@ -69,8 +83,8 @@ const Card = (props) => {
             <AddCircleIcon fontSize="inherit" />
           </IconButton>
         </Box>
-      </Box>
-    </Box>
+      </Grid>
+    </Container>
   );
 };
 
