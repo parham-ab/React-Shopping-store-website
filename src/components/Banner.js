@@ -2,11 +2,10 @@ import React, { useContext } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper";
 import { ProductContext } from "../contexts/ProductContextProvider";
-import { shorten } from "../helper/functions";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";
-import { Card, CardContent, CardMedia, Typography } from "@mui/material";
+import { Card, CardMedia } from "@mui/material";
 
 const Banner = () => {
   const data = useContext(ProductContext);
@@ -28,34 +27,19 @@ const Banner = () => {
     >
       {data.map((items) => (
         <SwiperSlide key={items.id}>
-          <Card sx={{ height: "250px" }}>
+          <Card sx={{ height: "130px" }}>
             <CardMedia component="div">
               <img
                 src={items.image}
                 alt={items.id}
                 loading="lazy"
                 style={{
-                  width: "100px",
+                  width: "80px",
                   display: "flex",
                   margin: "0 auto",
                 }}
               />
             </CardMedia>
-            <CardContent
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <Typography
-                sx={{ position: "absolute", bottom: 8, color: "#000" }}
-                gutterBottom
-                variant="h5"
-                component="h3"
-              >
-                {shorten(items.title)}
-              </Typography>
-            </CardContent>
           </Card>
         </SwiperSlide>
       ))}
