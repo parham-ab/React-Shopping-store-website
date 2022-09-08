@@ -27,11 +27,9 @@ const Store = () => {
             </Grid>
           ))
         ) : (
-          // <Box component="div" className="loading-container">
           <Grid item xs={12}>
             <Loading />
           </Grid>
-          // </Box>
         )}
       </Grid>
     </Container>
