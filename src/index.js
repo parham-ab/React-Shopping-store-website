@@ -8,7 +8,6 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 const theme = createTheme({
   typography: {
-    fontFamily: ["Quicksand"].join(","),
     fontSize: 15,
     fontWeightLight: 400,
     fontWeightMedium: 500,
@@ -23,5 +22,5 @@ ReactDOM.render(
       <App />
     </ThemeProvider>
   </BrowserRouter>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );

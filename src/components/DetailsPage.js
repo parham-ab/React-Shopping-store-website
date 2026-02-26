@@ -1,268 +1,361 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import {
-  Chip,
-  IconButton,
   Typography,
   Container,
-  Grid,
   Rating,
-  CardActions,
   Button,
   Box,
+  Chip,
+  IconButton,
+  Divider,
 } from "@mui/material";
 import { isSelected, quantityCount } from "../helper/functions";
 import DeleteIcon from "@mui/icons-material/Delete";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import AddCircleIcon from "@mui/icons-material/AddCircle";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
+import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import AddIcon from "@mui/icons-material/Add";
+import RemoveIcon from "@mui/icons-material/Remove";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
 import { CardContext } from "../contexts/CardContextProvider";
-import Loading from "./Loading";
 import Banner from "./Banner";
 import { GetSingleProducts } from "../services/getSingleProducts";
+import ProductInfo from "./ProductInfo";
+import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
 
 const DetailsPage = () => {
   const { state, dispatch } = useContext(CardContext);
-  const [currentProduct, setCurrentProduct] = useState([]);
+  const { id } = useParams();
+  const [currentProduct, setCurrentProduct] = useState(null);
 
   useEffect(() => {
     const fetchAPI = async () => {
-      setCurrentProduct(await GetSingleProducts(id));
+      const data = await GetSingleProducts(id);
+      setCurrentProduct(data);
     };
     fetchAPI();
-  }, []);
+  }, [id]);
 
-  const params = useParams();
-  const id = params.id;
+  const qty = currentProduct ? quantityCount(state, currentProduct.id) : 0;
+  const inCart = currentProduct ? isSelected(state, currentProduct.id) : false;
 
   return (
-    <Container maxWidth="lg">
-      <Grid container>
-        {currentProduct.id ? (
+    <Container>
+      <Box sx={{ py: { xs: 4, md: 8 } }}>
+        {/* Back link */}
+        <Link to="/products" style={{ textDecoration: "none" }}>
           <Box
-            display="flex"
-            alignItems="center"
-            mt={10}
             sx={{
-              margin: "auto",
-              flexDirection: {
-                xs: "column",
-                md: "row",
-              },
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 0.75,
+              mb: 4,
+              color: "#6C63FF",
+              fontSize: "0.85rem",
+              fontWeight: 600,
+              transition: "gap 0.2s ease",
+              "&:hover": { gap: 1.25 },
             }}
           >
-            <Grid item xs={12} md={6} mt={10}>
+            <ArrowBackIcon sx={{ fontSize: 16 }} />
+            Back to Store
+          </Box>
+        </Link>
+
+        {!currentProduct ? (
+          <ProductDetailsSkeleton />
+        ) : (
+          <Box
+            sx={{
+              display: "grid",
+              gridTemplateColumns: { xs: "1fr", md: "1fr 1fr" },
+              gap: { xs: 4, md: 8 },
+              alignItems: "start",
+            }}
+          >
+            {/* Image container */}
+            <Box
+              sx={{
+                position: { md: "sticky" },
+                top: { md: 88 },
+                borderRadius: "24px",
+                background: "linear-gradient(145deg, #f8f8fc 0%, #ededf7 100%)",
+                border: "1px solid rgba(108,99,255,0.1)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                minHeight: { xs: 280, md: 420 },
+                overflow: "hidden",
+                p: 4,
+              }}
+            >
               <img
                 src={currentProduct.image}
-                alt={`product/${id}`}
-                width={"190px"}
+                alt={currentProduct.title}
+                style={{
+                  maxWidth: "100%",
+                  maxHeight: "340px",
+                  objectFit: "contain",
+                  transition: "transform 0.4s ease",
+                }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.transform = "scale(1.05)")
+                }
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.transform = "scale(1)")
+                }
               />
-            </Grid>
-            <Grid item xs={12} my={7}>
-              <Box
-                component="div"
-                mt={5}
+            </Box>
+
+            {/* Info panel */}
+            <Box sx={{ display: "flex", flexDirection: "column", gap: 2.5 }}>
+              {/* Category chip */}
+              <Chip
+                label={currentProduct.category}
+                size="small"
                 sx={{
-                  border: "solid 1px #dfdfdf",
-                  borderRadius: "10px",
-                  padding: "20px",
+                  alignSelf: "flex-start",
+                  fontSize: "0.7rem",
+                  fontWeight: 600,
+                  textTransform: "capitalize",
+                  background: "rgba(108,99,255,0.08)",
+                  color: "#6C63FF",
+                  border: "1px solid rgba(108,99,255,0.2)",
+                  borderRadius: "8px",
+                }}
+              />
+
+              {/* Title */}
+              <Typography
+                sx={{
+                  fontSize: { xs: "1.3rem", md: "1.6rem" },
+                  fontWeight: 700,
+                  color: "#1a1a2e",
+                  lineHeight: 1.35,
                 }}
               >
-                <Typography variant="body1" color="text.secondary" mb={4}>
-                  {currentProduct.title}
-                </Typography>
+                {currentProduct.title}
+              </Typography>
 
-                <Box component="div" display="flex">
-                  <Typography
-                    component="p"
-                    variant="body1"
-                    color="primary"
-                    fontWeight={700}
-                    display="flex"
-                    mr={1}
-                  >
-                    Info:
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    fontWeight={400}
-                  >
-                    {currentProduct.description}
-                  </Typography>
-                </Box>
-
-                <Box component="div" display="flex" alignItems="center">
-                  <Typography
-                    variant="body1"
-                    color="primary"
-                    fontWeight={700}
-                    sx={{ lineHeight: 3 }}
-                    display="flex"
-                    alignItems="center"
-                    mr={1}
-                  >
-                    Category:
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    fontWeight={400}
-                  >
-                    {currentProduct.category}
-                  </Typography>
-                </Box>
-
-                <Box component="div" display="flex" alignItems="center">
-                  <Typography
-                    variant="body1"
-                    color="primary"
-                    fontWeight={700}
-                    sx={{ lineHeight: 3 }}
-                    display="flex"
-                    alignItems="center"
-                    mr={1}
-                  >
-                    Price:
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    fontWeight={400}
-                  >
-                    ${currentProduct.price}
-                  </Typography>
-                </Box>
-
-                <Box component="div" display="flex" alignItems="center">
-                  <Typography
-                    variant="body1"
-                    color="primary"
-                    fontWeight={700}
-                    display="flex"
-                    alignItems="center"
-                    sx={{ lineHeight: 3 }}
-                    mr={1}
-                  >
-                    Rate:
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    fontWeight={400}
-                  >
-                    {currentProduct.rating.rate}
-                  </Typography>
-                  <Rating
-                    sx={{ marginLeft: 1 }}
-                    name="half-rating-read"
-                    defaultValue={currentProduct.rating.rate}
-                    precision={0.1}
-                    readOnly
-                  />
-                </Box>
-
+              {/* Rating */}
+              <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                <Rating
+                  value={currentProduct.rating.rate}
+                  precision={0.1}
+                  readOnly
+                  size="small"
+                  sx={{
+                    "& .MuiRating-iconFilled": { color: "#6C63FF" },
+                    "& .MuiRating-iconEmpty": { color: "rgba(108,99,255,0.2)" },
+                  }}
+                />
                 <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  fontWeight={400}
-                  sx={{ lineHeight: 1 }}
-                >
-                  {currentProduct.rating.count} items of this product left!
-                </Typography>
-
-                <CardActions>
-                  {quantityCount(state, currentProduct.id) > 1 && (
-                    <IconButton
-                      onClick={() =>
-                        dispatch({
-                          type: "DECREASE",
-                          payload: currentProduct,
-                        })
-                      }
-                      aria-label="RemoveCircleIcon"
-                      size="medium"
-                    >
-                      <RemoveCircleIcon fontSize="inherit" />
-                    </IconButton>
-                  )}
-                  {quantityCount(state, currentProduct.id) === 1 && (
-                    <IconButton
-                      onClick={() =>
-                        dispatch({
-                          type: "REMOVE_ITEM",
-                          payload: currentProduct,
-                        })
-                      }
-                      color="error"
-                      aria-label="delete"
-                      size="medium"
-                    >
-                      <DeleteIcon fontSize="inherit" />
-                    </IconButton>
-                  )}
-                  {quantityCount(state, currentProduct.id) > 0 && (
-                    <Chip
-                      size="small"
-                      variant="outlined"
-                      color="info"
-                      sx={{ ml: 1 }}
-                      label={
-                        quantityCount(state, currentProduct.id) > 0 && (
-                          <span>{quantityCount(state, currentProduct.id)}</span>
-                        )
-                      }
-                    />
-                  )}
-                  {isSelected(state, currentProduct.id) ? (
-                    <IconButton
-                      aria-label="AddCircleIcon"
-                      size="medium"
-                      onClick={() =>
-                        dispatch({
-                          type: "INCREASE",
-                          payload: currentProduct,
-                        })
-                      }
-                    >
-                      <AddCircleIcon fontSize="inherit" />
-                    </IconButton>
-                  ) : (
-                    <Button
-                      size="small"
-                      variant="contained"
-                      onClick={() =>
-                        dispatch({
-                          type: "ADD_ITEM",
-                          payload: currentProduct,
-                        })
-                      }
-                    >
-                      Add to card
-                    </Button>
-                  )}
-                </CardActions>
-                <Link
-                  to="/products"
-                  style={{
-                    display: "flex",
-                    width: "fit-content",
-                    marginTop: "15px",
-                    color: "#00000099",
+                  sx={{
+                    fontSize: "0.82rem",
+                    fontWeight: 600,
+                    color: "#1a1a2e",
                   }}
                 >
-                  <ArrowBackIosIcon />
-                  <Typography>Back to store</Typography>
-                </Link>
+                  {currentProduct.rating.rate}
+                </Typography>
+                <Typography
+                  sx={{ fontSize: "0.78rem", color: "rgba(0,0,0,0.38)" }}
+                >
+                  ({currentProduct.rating.count} in stock)
+                </Typography>
               </Box>
-            </Grid>
+
+              {/* Price */}
+              <Typography
+                sx={{
+                  fontSize: "2rem",
+                  fontWeight: 800,
+                  letterSpacing: "-0.04em",
+                  background: "linear-gradient(135deg, #6C63FF, #3ECFCF)",
+                  WebkitBackgroundClip: "text",
+                  WebkitTextFillColor: "transparent",
+                  backgroundClip: "text",
+                }}
+              >
+                ${currentProduct.price}
+              </Typography>
+
+              <Divider sx={{ borderColor: "rgba(0,0,0,0.07)" }} />
+
+              {/* Description */}
+              <ProductInfo label="About">
+                <Typography
+                  sx={{
+                    fontSize: "0.87rem",
+                    color: "rgba(0,0,0,0.6)",
+                    lineHeight: 1.7,
+                  }}
+                >
+                  {currentProduct.description}
+                </Typography>
+              </ProductInfo>
+
+              <Divider sx={{ borderColor: "rgba(0,0,0,0.07)" }} />
+
+              {/* Cart controls */}
+              {inCart ? (
+                <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
+                  {/* Stepper */}
+                  <Box
+                    sx={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 0.5,
+                      background: "rgba(108,99,255,0.06)",
+                      borderRadius: "12px",
+                      border: "1px solid rgba(108,99,255,0.14)",
+                      px: 0.75,
+                      py: 0.5,
+                    }}
+                  >
+                    {qty === 1 ? (
+                      <IconButton
+                        size="small"
+                        onClick={() =>
+                          dispatch({
+                            type: "REMOVE_ITEM",
+                            payload: currentProduct,
+                          })
+                        }
+                        sx={{
+                          width: 34,
+                          height: 34,
+                          color: "#e53935",
+                          "&:hover": { background: "rgba(229,57,53,0.1)" },
+                        }}
+                      >
+                        <DeleteIcon sx={{ fontSize: 17 }} />
+                      </IconButton>
+                    ) : (
+                      <IconButton
+                        size="small"
+                        onClick={() =>
+                          dispatch({
+                            type: "DECREASE",
+                            payload: currentProduct,
+                          })
+                        }
+                        sx={{
+                          width: 34,
+                          height: 34,
+                          color: "#6C63FF",
+                          "&:hover": { background: "rgba(108,99,255,0.12)" },
+                        }}
+                      >
+                        <RemoveIcon sx={{ fontSize: 17 }} />
+                      </IconButton>
+                    )}
+                    <Typography
+                      sx={{
+                        fontSize: "1rem",
+                        fontWeight: 700,
+                        color: "#1a1a2e",
+                        minWidth: 28,
+                        textAlign: "center",
+                      }}
+                    >
+                      {qty}
+                    </Typography>
+                    <IconButton
+                      size="small"
+                      onClick={() =>
+                        dispatch({ type: "INCREASE", payload: currentProduct })
+                      }
+                      sx={{
+                        width: 34,
+                        height: 34,
+                        color: "#6C63FF",
+                        "&:hover": { background: "rgba(108,99,255,0.12)" },
+                      }}
+                    >
+                      <AddIcon sx={{ fontSize: 17 }} />
+                    </IconButton>
+                  </Box>
+
+                  <Typography
+                    sx={{
+                      fontSize: "0.78rem",
+                      fontWeight: 600,
+                      color: "#6C63FF",
+                      textTransform: "uppercase",
+                      letterSpacing: "0.06em",
+                    }}
+                  >
+                    In cart · ${(currentProduct.price * qty).toFixed(2)}
+                  </Typography>
+                </Box>
+              ) : (
+                <Button
+                  variant="contained"
+                  startIcon={<ShoppingCartOutlinedIcon />}
+                  onClick={() =>
+                    dispatch({ type: "ADD_ITEM", payload: currentProduct })
+                  }
+                  sx={{
+                    alignSelf: "flex-start",
+                    borderRadius: "12px",
+                    textTransform: "none",
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    px: 4,
+                    py: 1.4,
+                    background:
+                      "linear-gradient(135deg, #6C63FF 0%, #5a52e0 100%)",
+                    boxShadow: "0 4px 14px rgba(108,99,255,0.35)",
+                    "&:hover": {
+                      background:
+                        "linear-gradient(135deg, #7b74ff 0%, #6C63FF 100%)",
+                      boxShadow: "0 6px 20px rgba(108,99,255,0.45)",
+                      transform: "translateY(-1px)",
+                    },
+                    "&:active": { transform: "translateY(0)" },
+                    transition: "all 0.2s ease",
+                  }}
+                >
+                  Add to Cart
+                </Button>
+              )}
+
+              {/* Trust badges */}
+              <Box sx={{ display: "flex", gap: 2.5, mt: 1 }}>
+                {[
+                  {
+                    icon: <LocalShippingOutlinedIcon sx={{ fontSize: 15 }} />,
+                    label: "Free shipping",
+                  },
+                  {
+                    icon: <VerifiedOutlinedIcon sx={{ fontSize: 15 }} />,
+                    label: "Quality guaranteed",
+                  },
+                ]?.map(({ icon, label }) => (
+                  <Box
+                    key={label}
+                    sx={{ display: "flex", alignItems: "center", gap: 0.6 }}
+                  >
+                    <Box sx={{ color: "#6C63FF" }}>{icon}</Box>
+                    <Typography
+                      sx={{
+                        fontSize: "0.72rem",
+                        fontWeight: 600,
+                        color: "rgba(0,0,0,0.4)",
+                      }}
+                    >
+                      {label}
+                    </Typography>
+                  </Box>
+                ))}
+              </Box>
+            </Box>
           </Box>
-        ) : (
-          <Grid item xs={12}>
-            <Loading />
-          </Grid>
         )}
-      </Grid>
+      </Box>
+
       <Box sx={{ display: { xs: "none", sm: "flex" } }}>
         <Banner />
       </Box>

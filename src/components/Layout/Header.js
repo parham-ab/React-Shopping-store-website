@@ -22,14 +22,13 @@ const Header = () => {
       elevation={0}
       sx={{
         background: "rgba(10, 10, 15, 0.85)",
-        backdropFilter: "blur(20px)",
-        WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(255,255,255,0.07)",
+        backdropFilter: "blur(10px)",
+        WebkitBackdropFilter: "blur(10px)",
         top: 0,
         zIndex: 1100,
       }}
     >
-      <Container maxWidth="lg">
+      <Container>
         <Toolbar
           sx={{
             display: "flex",

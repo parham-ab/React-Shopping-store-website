@@ -12,7 +12,7 @@ const Store = () => {
     <Container>
       <Grid container>
         {products.length ? (
-          products.map((product) => (
+          products?.map((product) => (
             <Grid
               item
               xs={12}
