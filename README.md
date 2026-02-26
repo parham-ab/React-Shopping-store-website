@@ -69,8 +69,6 @@ React-Shopping-store-website/
 
 ## 🖼️ Project Screenshots
 
-_Add project images below by placing them in an `images/` directory and updating the Markdown paths._
-
 ![Homepage](images/homepage.png)
 ![Product Details](images/details-page.png)
 ![Shopping Cart](images/shop-cart.png)
