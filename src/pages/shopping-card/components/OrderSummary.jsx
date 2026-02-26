@@ -1,7 +1,7 @@
 import { Box, Button, Divider, Typography } from "@mui/material";
 import StatRow from "./StatRow";
 import { useContext } from "react";
-import { CardContext } from "../contexts/CardContextProvider";
+import { CardContext } from "../../../contexts/CardContextProvider";
 
 const OrderSummary = () => {
   const { state, dispatch } = useContext(CardContext);

@@ -1,13 +1,10 @@
-import React from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
-// context
 import ProductContextProvider from "./contexts/ProductContextProvider";
 import CardContextProvider from "./contexts/CardContextProvider";
-// components
-import Store from "./components/Store";
-import DetailsPage from "./components/DetailsPage";
-import ShopCard from "./components/ShopCard";
 import Layout from "./components/Layout";
+import ProductsPage from "./pages/products";
+import ShoppingCard from "./pages/shopping-card";
+import ProductDetailsPage from "./pages/product-details";
 
 const App = () => {
   return (
@@ -15,9 +12,9 @@ const App = () => {
       <CardContextProvider>
         <Layout>
           <Routes>
-            <Route path="/products" element={<Store />} />
-            <Route path="/cards" element={<ShopCard />} />
-            <Route path="/products/:id" element={<DetailsPage />} />
+            <Route path="/products" element={<ProductsPage />} />
+            <Route path="/cards" element={<ShoppingCard />} />
+            <Route path="/products/:id" element={<ProductDetailsPage />} />
             <Route path="/*" element={<Navigate to="/products" />} />
           </Routes>
         </Layout>

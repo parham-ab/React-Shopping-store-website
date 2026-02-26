@@ -10,7 +10,6 @@ import {
   IconButton,
   Divider,
 } from "@mui/material";
-import { isSelected, quantityCount } from "../helper/functions";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import AddIcon from "@mui/icons-material/Add";
@@ -18,13 +17,14 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
 import VerifiedOutlinedIcon from "@mui/icons-material/VerifiedOutlined";
-import { CardContext } from "../contexts/CardContextProvider";
-import Banner from "./Banner";
-import { GetSingleProducts } from "../services/getSingleProducts";
-import ProductInfo from "./ProductInfo";
-import ProductDetailsSkeleton from "./ProductDetailsSkeleton";
+import ProductDetailsSkeleton from "./components/ProductDetailsSkeleton";
+import ProductInfo from "./components/ProductInfo";
+import { CardContext } from "../../contexts/CardContextProvider";
+import { GetSingleProducts } from "../../services/getSingleProducts";
+import Banner from "./components/Banner";
+import { isSelected, quantityCount } from "../../helper/functions";
 
-const DetailsPage = () => {
+const ProductDetailsPage = () => {
   const { state, dispatch } = useContext(CardContext);
   const { id } = useParams();
   const [currentProduct, setCurrentProduct] = useState(null);
@@ -363,4 +363,4 @@ const DetailsPage = () => {
   );
 };
 
-export default DetailsPage;
+export default ProductDetailsPage;

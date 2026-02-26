@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper";
-import { ProductContext } from "../contexts/ProductContextProvider";
+import { ProductContext } from "../../../contexts/ProductContextProvider";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css";

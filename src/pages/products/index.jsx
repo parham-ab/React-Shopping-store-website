@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { Container, Grid } from "@mui/material";
-// context
-import { ProductContext } from "../contexts/ProductContextProvider";
-// components
-import Products from "./common/Products";
-import Loading from "./Loading";
-const Store = () => {
+import Products from "../../components/common/Products";
+import { ProductContext } from "../../contexts/ProductContextProvider";
+import Loading from "../../components/common/Loading";
+
+const ProductsPage = () => {
   const products = useContext(ProductContext);
 
   return (
@@ -36,4 +35,4 @@ const Store = () => {
   );
 };
 
-export default Store;
+export default ProductsPage;

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Box, Typography } from "@mui/material";
-import { CardContext } from "../contexts/CardContextProvider";
+import { CardContext } from "../../../contexts/CardContextProvider";
 import Card from "./Card";
 
 const CartList = () => {

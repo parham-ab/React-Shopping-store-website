@@ -1,13 +1,13 @@
 import { useContext } from "react";
 import swal from "sweetalert";
 import { Box, Container } from "@mui/material";
-import { CardContext } from "../contexts/CardContextProvider";
-import OrderSummary from "./OrderSummary";
-import EmptyCartState from "./EmptyCartState";
-import SuccessCartState from "./SuccessCartState";
-import CartList from "./CartList";
+import SuccessCartState from "./components/SuccessCartState";
+import EmptyCartState from "./components/EmptyCartState";
+import CartList from "./components/CartList";
+import OrderSummary from "./components/OrderSummary";
+import { CardContext } from "../../contexts/CardContextProvider";
 
-const ShopCard = () => {
+const ShoppingCard = () => {
   const { state } = useContext(CardContext);
   if (state.checkout) {
     swal({ text: "Checked Out Successfully!", icon: "success" });
@@ -38,4 +38,4 @@ const ShopCard = () => {
   );
 };
 
-export default ShopCard;
+export default ShoppingCard;

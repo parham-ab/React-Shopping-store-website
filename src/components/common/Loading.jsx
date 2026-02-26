@@ -1,5 +1,5 @@
 import { Box } from "@mui/material";
-import loader from "../assets/loading.svg";
+import loader from "../../assets/loading.svg";
 
 const Loading = () => {
   return (

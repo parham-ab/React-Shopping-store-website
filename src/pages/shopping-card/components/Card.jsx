@@ -4,7 +4,7 @@ import { Box, IconButton, Typography } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import { CardContext } from "../contexts/CardContextProvider";
+import { CardContext } from "../../../contexts/CardContextProvider";
 
 const Card = (props) => {
   const { dispatch } = useContext(CardContext);
