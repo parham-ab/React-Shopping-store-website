@@ -1,6 +1,5 @@
 import { Box } from "@mui/material";
-// loading img
-import loader from "../assets/img/loader.gif";
+import loader from "../assets/loading.svg";
 
 const Loading = () => {
   return (
@@ -10,7 +9,7 @@ const Loading = () => {
       alignItems="center"
       justifyContent="center"
     >
-      <img src={loader} alt="loading" />
+      <img width={50} src={loader} alt="loading" />
     </Box>
   );
 };

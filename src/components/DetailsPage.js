@@ -11,16 +11,12 @@ import {
   Button,
   Box,
 } from "@mui/material";
-// functions
 import { isSelected, quantityCount } from "../helper/functions";
-// icons
 import DeleteIcon from "@mui/icons-material/Delete";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-// context
 import { CardContext } from "../contexts/CardContextProvider";
-// components
 import Loading from "./Loading";
 import Banner from "./Banner";
 import { GetSingleProducts } from "../services/getSingleProducts";

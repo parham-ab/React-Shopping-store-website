@@ -10,13 +10,10 @@ import {
   Button,
   Typography,
 } from "@mui/material";
-// icons
 import DeleteIcon from "@mui/icons-material/Delete";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-// context
 import { CardContext } from "../../contexts/CardContextProvider";
-// functions
 import { isSelected, quantityCount, shorten } from "../../helper/functions";
 
 const Products = ({ productData }) => {
