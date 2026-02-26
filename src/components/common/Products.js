@@ -114,7 +114,6 @@ const Products = ({ productData }) => {
               lineHeight: 1.4,
               minHeight: "2.8em",
               mb: 1,
-              fontFamily: "'Georgia', serif",
             }}
           >
             {shorten(productData.title)}
